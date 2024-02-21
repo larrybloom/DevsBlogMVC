@@ -1,7 +1,6 @@
 ﻿using DevsTutorialCenterMVC.Models;
 using DevsTutorialCenterMVC.Models.Api;
 using DevsTutorialCenterMVC.Services.Interfaces;
-using DevsTutorialCenterMVC.Models.Components;
 
 namespace DevsTutorialCenterMVC.Services;
 
@@ -28,7 +27,7 @@ public class BlogPostService : BaseService
 
             return res.Data;
         }
-        
+
         address = $"{address}?";
 
         if (filterArticleDto?.Page is not null)
@@ -57,7 +56,7 @@ public class BlogPostService : BaseService
 
     public async Task<IEnumerable<BlogPostVM>> GetRecommendedArticles()
     {
-        
+
         var filter = new FilterArticleDto
         {
             Page = 1,
@@ -125,9 +124,9 @@ public class BlogPostService : BaseService
     public async Task<SingleArticleVM> GetArticleById(string id)
     {
         var address = $"/api/articles/get-single-article/{id}";
-        
+
         var res = await _httpClientService.GetAsync<ResponseObject<SingleArticleVM>>(address);
-        
+
         return res.Data;
     }
 }

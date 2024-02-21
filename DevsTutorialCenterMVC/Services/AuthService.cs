@@ -1,10 +1,10 @@
-﻿using System.Security.Claims;
-using DevsTutorialCenterMVC.Models;
+﻿using DevsTutorialCenterMVC.Models;
 using DevsTutorialCenterMVC.Models.Api;
 using DevsTutorialCenterMVC.Models.Api.Responses;
 using DevsTutorialCenterMVC.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 
 namespace DevsTutorialCenterMVC.Services;
 
@@ -28,8 +28,8 @@ public class AuthService : BaseService
         });
 
         if (response == null || !response.IsSuccessful)
-            return Result.Failure<LoginResponseDto>(new []{new Error("Auth.Error", "username or password not correct")});
-        
+            return Result.Failure<LoginResponseDto>(new[] { new Error("Auth.Error", "username or password not correct") });
+
         if (response.Errors.Any())
             return Result.Success(response.Data);
 
@@ -52,7 +52,7 @@ public class AuthService : BaseService
 
         return Result.Success(response.Data);
     }
-    
+
     public async Task<Result> Register(SignUpViewModel signUpData)
     {
         const string url = "/api/auth/register";
